@@ -232,6 +232,15 @@ imp_df = pd.DataFrame({
 # =============================
 st.subheader("Hasil Model Binary Logit")
 st.markdown("```text\n" + result.summary().as_text() + "\n```")
+st.write("""
+            <div style="text-align: justify;">
+            Output estimasi binary logit menunjukkan bahwa konsumen sensitif terhadap harga, terlihat dari
+            nilai koefisien pada variabel Price menunjukkan hasil yang signifikan. Dimana price Popular sangat meningkatkan peluang untuk dipilih.
+            Harga premium signifikan positif, tapi menunjukkan konsumen kurang menarik dibandingkan harga yang lainnya. 
+            untuk kategori brand, konsumen lebih memilih brand Ferrari dan Mezzacorona. hal ini ditunjukkan oleh nilai p-value yang menunjukkan nilai yang signifikan.
+            Brand Ferrari menunjukkan nilai p-value yang signifikan (p = 0.001) dibandingkan dengan brand lainnya.
+            dan semua variabel yang tidak dijelaskan, menunjukkan pengaruh yang tidak signifikan terhadap model.
+            </div>""", unsafe_allow_html=True)
 
 st.subheader("Part-Worth Utilities")
 st.dataframe(pw_df)
@@ -248,6 +257,11 @@ for attr, levels in partworth.items():
 pw_df = pd.DataFrame(pw_rows)
 """
 st.code(code, language='python')
+
+st.write("""
+            <div style="text-align: justify;">
+            Nilai yang dihasilkan dari PWU diperoleh dari hasil pengestimasian model binary logistik regresi. dimana, seluruh atribut merupakan kategorik sehingga satu level pada tiap atribut dijadikan baseline atau acuan.
+            </div>""", unsafe_allow_html=True)
 
 st.subheader("Relative Importance (%)")
 st.dataframe(imp_df)
@@ -266,6 +280,12 @@ imp_df = pd.DataFrame({
     "Relative Importance (%)": list(importance_pct.values())
 })"""
 st.code(code, language='python')
+
+st.write("""
+            <div style="text-align: justify;">
+            Nilai Relative Importance diperoleh dari rentang utilitas tiap atribut yang merupakan selisih antara maximum dan minimum.
+         Kemudian dilakukan normalisasi dengan melakukan pembagian terhadap total rentang atribut dan dikonversi ke bentuk persentase.
+            </div>""", unsafe_allow_html=True)
 
 st.subheader("Visualisasi Part-Worth Utilities")
 
